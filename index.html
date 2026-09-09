@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Phetolo Tshukudu — Backend &amp; Data Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #060606;
+    --panel: #0D0D0D;
+    --panel-2: #111111;
+    --line: #2A2A2A;
+    --line-soft: #1A1A1A;
+    --text: #F3F3F0;
+    --text-dim: #A0A09A;
+    --text-faint: #5E5E58;
+    --accent: #F3F3F0;
+    --accent-dim: #C9C9C2;
+    --good: #4C8DFF;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection{ background: var(--good); color: #060606; }
+
+  a { color: inherit; }
+
+  .wrap{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* corner bracket motif — used once per section, not as decoration everywhere */
+  .frame{
+    position: relative;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(2px);
+  }
+  .frame::before, .frame::after{
+    content:"";
+    position:absolute;
+    width:14px; height:14px;
+    border: 2px solid var(--good);
+  }
+  .frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+  header.hero{
+    padding: 96px 0 72px;
+    position: relative;
+  }
+  .tag-row{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text-faint);
+    letter-spacing: 0.02em;
+    margin-bottom: 28px;
+    display:flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .tag-row span{ color: var(--good); }
+
+  h1.name{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(42px, 7vw, 74px);
+    line-height: 1.02;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+  .role-line{
+    font-size: clamp(17px, 2.4vw, 21px);
+    color: var(--text-dim);
+    max-width: 640px;
+    line-height: 1.55;
+    margin: 0 0 34px;
+  }
+  .role-line strong{ color: var(--text); font-weight: 600; }
+
+  .hero-links{
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    padding: 11px 18px;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .btn:hover{ border-color: var(--good); color: var(--good); }
+  .btn.primary{
+    background: var(--good);
+    color: #060606;
+    border-color: var(--good);
+    font-weight: 500;
+  }
+  .btn.primary:hover{ background: transparent; color: var(--good); }
+
+  /* schematic ruler line between sections */
+  .ruler{
+    height: 1px;
+    background: var(--line);
+    position: relative;
+    margin: 0 0;
+  }
+  .ruler .mark{
+    position:absolute; top:-3px;
+    width:1px; height:7px;
+    background: var(--line);
+  }
+
+  section{ padding: 64px 0; }
+
+  .sec-head{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 34px;
+    gap: 16px;
+  }
+  .sec-head h2{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    margin: 0;
+  }
+  .sec-index{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  /* summary */
+  .summary p{
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-dim);
+    max-width: 680px;
+    margin: 0;
+  }
+  .summary p strong{ color: var(--text); font-weight: 500; }
+
+  /* skills — treated as a spec table, not pill soup */
+  .skill-table{
+    border: 1px solid var(--line);
+  }
+  .skill-row{
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-row:last-child{ border-bottom:none; }
+  .skill-row .k{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text-faint);
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+  }
+  .skill-row .v{
+    padding: 16px 20px;
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  @media (max-width: 640px){
+    .skill-row{ grid-template-columns: 1fr; }
+    .skill-row .k{ border-right:none; border-bottom:1px solid var(--line); padding-bottom:8px; }
+  }
+
+  /* projects */
+  .project{
+    padding: 28px 26px;
+    margin-bottom: 22px;
+  }
+  .project:last-child{ margin-bottom:0; }
+  .p-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .p-title{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+  }
+  .p-stack{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--good);
+    text-align: right;
+    line-height: 1.6;
+    max-width: 260px;
+  }
+  .p-desc{
+    color: var(--text-dim);
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .p-desc li{
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .p-desc li::before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color: var(--text-faint);
+  }
+  .p-link{
+    display:inline-block;
+    margin-top: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    text-decoration: none;
+    color: var(--good);
+    border-bottom: 1px solid transparent;
+  }
+  .p-link:hover{ border-bottom-color: var(--good); }
+
+  /* education + experience as a timeline-less spec list (not numbered, since not sequential) */
+  .entry{
+    display:grid;
+    grid-template-columns: 160px 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .entry:last-child{ border-bottom: none; }
+  .entry .when{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-faint);
+    padding-top: 3px;
+  }
+  .entry .what h3{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .entry .what .org{
+    font-size: 13.5px;
+    color: var(--good);
+    margin-bottom: 10px;
+  }
+  .entry .what p, .entry .what ul{
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .entry .what ul{ padding-left: 18px; }
+  @media (max-width: 640px){
+    .entry{ grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  footer{
+    padding: 56px 0 80px;
+    border-top: 1px solid var(--line);
+    margin-top: 40px;
+  }
+  footer .f-wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer .f-left{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+  footer .f-links{
+    display:flex;
+    gap: 22px;
+    font-size: 13.5px;
+  }
+  footer .f-links a{ text-decoration:none; color: var(--text-dim); }
+  footer .f-links a:hover{ color: var(--good); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="tag-row">
+      <span>● AVAILABLE</span>
+      <span>Brixton, Johannesburg, ZA</span>
+      <span>BSc Mathematical Sciences — Final Year, University of Johannesburg</span>
+    </div>
+    <h1 class="name">Phetolo<br>Tshukudu</h1>
+    <p class="role-line">
+      I build <strong>backend systems and data-driven applications</strong> —
+      REST APIs in Java/Spring Boot, and analysis pipelines in Python.
+      Looking for graduate and junior roles in software or data engineering.
+    </p>
+    <div class="hero-links">
+      <a class="btn primary" href="mailto:phetolotshukudu@gmail.com">Email me</a>
+      <a class="btn" href="https://github.com/phetolo-tshukudu" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://linkedin.com/in/phetolo-tshukudu-96a8a8249" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="tel:0718006606">071 800 6606</a>
+    </div>
+  </header>
+
+  <div class="ruler"></div>
+
+  <section class="summary">
+    <div class="sec-head">
+      <h2>Summary</h2>
+      <span class="sec-index">01</span>
+    </div>
+    <p>
+      Final-year <strong>Computer Science and Mathematical Statistics</strong> student with hands-on
+      experience building secure Java/Spring Boot REST APIs and Python data-analysis tools.
+      Comfortable across the stack from relational schema design to statistical modelling,
+      with a habit of writing tests as I go — not after.
+    </p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Skills</h2>
+      <span class="sec-index">02</span>
+    </div>
+    <div class="skill-table frame">
+      <div class="skill-row">
+        <div class="k">LANGUAGES</div>
+        <div class="v">Java, Python, SQL, R</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">BACKEND</div>
+        <div class="v">Spring Boot, Spring Security, REST APIs, JWT, JPA / Hibernate</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">DATA</div>
+        <div class="v">Pandas, data cleaning &amp; analysis, statistical modelling, regression analysis, model evaluation</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">DATABASES</div>
+        <div class="v">MySQL, SQLite, relational database design</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">TESTING</div>
+        <div class="v">JUnit 5, Mockito, Pytest</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">TOOLS</div>
+        <div class="v">Git, GitHub, Maven, Eclipse IDE, Postman, MySQL Workbench</div>
+      </div>
+      <div class="skill-row">
+        <div class="k">FOUNDATIONS</div>
+        <div class="v">Data structures &amp; algorithms, graph algorithms, database systems, software engineering</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <span class="sec-index">03</span>
+    </div>
+
+    <div class="project frame">
+      <div class="p-head">
+        <div class="p-title">PersonalFinance API</div>
+        <div class="p-stack">Java · Spring Boot · Spring Security<br>JWT · MySQL · JPA/Hibernate · JUnit 5</div>
+      </div>
+      <ul class="p-desc">
+        <li>RESTful backend for managing users, accounts, transactions and personal budgets.</li>
+        <li>JWT-based authentication and authorisation securing protected endpoints via Spring Security.</li>
+        <li>Relational persistence layer with JPA/Hibernate and MySQL, including entity relationships and repository-based data access.</li>
+        <li>Layered architecture — controllers, services, repositories, DTOs — with validation and consistent error handling.</li>
+        <li>Unit tests with JUnit 5 and Mockito covering service-layer logic and repository interactions.</li>
+      </ul>
+      <a class="p-link" href="https://github.com/phetolo-tshukudu/PersonalFinance" target="_blank" rel="noopener">View repository ↗</a>
+    </div>
+
+    <div class="project frame">
+      <div class="p-head">
+        <div class="p-title">Financial Data Analyzer</div>
+        <div class="p-stack">Python · Pandas · Pytest<br>Dataclasses · Statistics</div>
+      </div>
+      <ul class="p-desc">
+        <li>Python system for processing, cleaning and analysing transaction data.</li>
+        <li>Object-oriented domain models using classes and @dataclass, with separate services for transactions, budgeting and statistics.</li>
+        <li>16 passing pytest tests covering core business logic and edge cases.</li>
+        <li>Pandas-based CSV processing powering spending analysis, financial statistics and budget tracking.</li>
+        <li>Structured into models, services, data processing and tests for maintainability.</li>
+      </ul>
+      <a class="p-link" href="https://github.com/phetolo-tshukudu/FinancialAnalyzer" target="_blank" rel="noopener">View repository ↗</a>
+    </div>
+
+    <div class="project frame">
+      <div class="p-head">
+        <div class="p-title">Wildfire Simulator</div>
+        <div class="p-stack">Java · JavaFX · Dijkstra's Algorithm<br>Graph Algorithms · Git</div>
+      </div>
+      <ul class="p-desc">
+        <li>Team-built Java application simulating wildfire propagation across terrain to identify safer escape routes.</li>
+        <li>Graph-based pathfinding with Dijkstra's algorithm, routing based on terrain and fire conditions.</li>
+        <li>Priority queues and custom data structures modelling fire propagation.</li>
+        <li>Contributed to the JavaFX interface and integrated algorithmic components.</li>
+        <li>Collaborative development using Git feature branches.</li>
+      </ul>
+      <a class="p-link" href="https://github.com/phetolo-tshukudu/Wildfire-Simulator" target="_blank" rel="noopener">View repository ↗</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Education</h2>
+      <span class="sec-index">04</span>
+    </div>
+    <div class="frame" style="padding: 6px 26px;">
+      <div class="entry">
+        <div class="when">2023 — Present</div>
+        <div class="what">
+          <h3>BSc Mathematical Sciences</h3>
+          <div class="org">University of Johannesburg — Computer Science &amp; Mathematical Statistics</div>
+          <p>Coursework: Object-Oriented Programming, Data Structures &amp; Algorithms, Database Systems, Software Engineering, Computer Networks, Operating Systems, Mathematical Statistics, Statistical Modelling, Regression Analysis.</p>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">Highlights</div>
+        <div class="what">
+          <h3>Academic recognition</h3>
+          <p>UJ UJenius Certificate · Academic award in Mathematics · High school learner council</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Experience</h2>
+      <span class="sec-index">05</span>
+    </div>
+    <div class="frame" style="padding: 6px 26px;">
+      <div class="entry">
+        <div class="when">Jun — Jul 2023</div>
+        <div class="what">
+          <h3>Mathematics &amp; Physical Sciences Tutor</h3>
+          <div class="org">Ghetto Hero Saturday School</div>
+          <p>Tutored Grade 10–12 learners, explaining complex concepts through structured, accessible problem-solving and building learners' mathematical reasoning.</p>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">Leadership</div>
+        <div class="what">
+          <h3>Team Leader — Free Sanitary Pad &amp; Toiletry Project</h3>
+          <div class="org">Bridge to Employment Programme, NICDAM</div>
+          <p>Led a team organising a community project providing sanitary products and toiletries, coordinating responsibilities, engaging sponsors, and delivering the initiative end to end.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="f-wrap">
+      <div class="f-left">PHETOLO TSHUKUDU — PORTFOLIO / rev. 2026</div>
+      <div class="f-links">
+        <a href="mailto:phetolotshukudu@gmail.com">Email</a>
+        <a href="https://github.com/phetolo-tshukudu" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/phetolo-tshukudu-96a8a8249" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
+<script async src="/.netlify/scripts/hud?variant=owner-private" data-nf-variant="owner-private" data-netlify-site-id="3c7b5a83-4eb2-4c69-add6-a015fb833009" data-app-host="app.netlify.com"></script>
