@@ -10,14 +10,7 @@ Static, deployable developer portfolio built with plain HTML, CSS and JavaScript
 - `assets/Phetolo-Tshukudu-CV.pdf` — downloadable CV
 - `404.html` — GitHub Pages fallback
 
-## Deploy to GitHub Pages
 
-### If this replaces `phetolo-tshukudu.github.io`
-1. Copy all files in this folder into the root of the `phetolo-tshukudu.github.io` repository.
-2. Commit and push to `main`.
-3. In GitHub: **Settings → Pages → Build and deployment → Deploy from a branch**.
-4. Select `main` and `/ (root)`.
-5. The site should be available at `https://phetolo-tshukudu.github.io/`.
 
 ### Test locally
 
