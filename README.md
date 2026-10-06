@@ -7,7 +7,7 @@ Static, deployable developer portfolio built with plain HTML, CSS and JavaScript
 - `index.html` — portfolio content and structure
 - `styles.css` — responsive design
 - `script.js` — mobile navigation and scroll reveal
-- `assets/Phetolo-Tshukudu-CV.pdf` — downloadable CV
+- `assets/Phetolo_Tshukudu_CV.pdf` — downloadable CV
 - `404.html` — GitHub Pages fallback
 
 

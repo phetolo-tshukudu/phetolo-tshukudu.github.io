@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio of Phetolo Tshukudu — backend developer and data-focused Mathematical Sciences student building secure APIs, financial systems and algorithmic applications.">
-  <meta name="theme-color" content="#0b1020">
+  <meta name="theme-color" content="#f8fafc">
   <meta property="og:title" content="Phetolo Tshukudu — Backend & Data Portfolio">
   <meta property="og:description" content="Secure APIs, financial systems, data analysis and algorithmic applications.">
   <meta property="og:type" content="website">
@@ -21,8 +21,8 @@
   <header class="site-header">
     <div class="shell nav-wrap">
       <a class="brand" href="#top" aria-label="Phetolo Tshukudu home"><span>PT</span><b>Phetolo Tshukudu</b></a>
-      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
-      <nav class="nav" aria-label="Primary navigation">
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">☾ <span>Theme</span></button><button class="nav-toggle" aria-label="Toggle navigation" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+      <nav id="primary-nav" class="nav" aria-label="Primary navigation">
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
@@ -36,8 +36,9 @@
     <section class="hero shell" id="top">
       <div class="hero-copy reveal">
         <p class="eyebrow"><span class="status-dot"></span> Available for graduate & junior opportunities</p>
-        <h1>I build reliable backend systems and data-driven software.</h1>
-        <p class="lede">I’m <strong>Phetolo Tshukudu</strong>, a final-year BSc Mathematical Sciences student at the University of Johannesburg, focused on backend engineering, financial technology and practical data systems.</p>
+        <p class="hero-intro">Johannesburg, South Africa</p>
+        <h1>Phetolo Tshukudu<span>Java Backend Developer</span></h1>
+        <p class="lede">BSc Mathematical Sciences student at the University of Johannesburg. I build secure APIs and finance applications with <strong>Java, Spring Boot and SQL</strong>, bringing a foundation in computer science and mathematical statistics.</p>
         <div class="hero-actions">
           <a class="button primary" href="#work">See my work <span>↓</span></a>
           <a class="button ghost" href="assets/Phetolo_Tshukudu_CV.pdf" download>Download CV</a>
@@ -49,51 +50,32 @@
         </div>
       </div>
 
-      <aside class="hero-panel reveal" aria-label="Developer profile summary">
-        <div class="terminal-top"><span></span><span></span><span></span><small>profile.json</small></div>
-        <pre><code>{
-  <i>"role"</i>: <b>"Backend Developer"</b>,
-  <i>"focus"</i>: [
-    <b>"APIs"</b>,
-    <b>"FinTech"</b>,
-    <b>"Data"</b>
-  ],
-  <i>"stack"</i>: [
-    <b>"Java"</b>, <b>"Spring Boot"</b>,
-    <b>"Python"</b>, <b>"SQL"</b>
-  ],
-  <i>"location"</i>: <b>"Johannesburg, ZA"</b>
-}</code></pre>
-        <div class="panel-stats">
-          <div><strong>Java</strong><span>Backend</span></div>
-          <div><strong>Python</strong><span>Data</span></div>
-          <div><strong>SQL</strong><span>Databases</span></div>
-        </div>
+      <aside class="profile-card" aria-label="At a glance">
+        <div class="profile-monogram" aria-hidden="true">PT<span>↗</span></div><div class="focus-switch" aria-label="Explore my focus"><button type="button" class="selected" data-focus="backend" aria-pressed="true">Backend</button><button type="button" data-focus="data" aria-pressed="false">Data</button><button type="button" data-focus="algorithms" aria-pressed="false">Algorithms</button></div><p class="focus-description" aria-live="polite">Secure APIs, transaction safety and maintainable Java services.</p>
+        <p class="eyebrow">At a glance</p>
+        <dl><div><dt>Focus</dt><dd>Backend engineering &amp; data</dd></div><div><dt>Core stack</dt><dd>Java · Spring Boot · SQL</dd></div><div><dt>Education</dt><dd>BSc Mathematical Sciences<br>University of Johannesburg</dd></div><div><dt>Seeking</dt><dd>Graduate &amp; junior opportunities</dd></div></dl>
+        <a class="text-link" href="assets/Phetolo_Tshukudu_CV.pdf" target="_blank" rel="noopener">Read my CV ↗</a>
       </aside>
     </section>
 
-    <section class="ticker" aria-label="Technology stack">
-      <div class="ticker-track">
-        <span>JAVA</span><span>SPRING BOOT</span><span>SPRING SECURITY</span><span>REST APIS</span><span>JWT</span><span>POSTGRESQL</span><span>MYSQL</span><span>PYTHON</span><span>PANDAS</span><span>JUNIT</span><span>PYTEST</span><span>DOCKER</span><span>GIT</span>
-      </div>
-    </section>
+
 
     <section class="section shell" id="work">
       <div class="section-heading reveal">
         <div>
           <p class="eyebrow">Selected work</p>
-          <h2>Projects that show how I think.</h2>
+          <h2>Selected projects</h2>
         </div>
         <a class="text-link" href="https://github.com/phetolo-tshukudu?tab=repositories" target="_blank" rel="noopener">All repositories ↗</a>
       </div>
 
-      <article class="project feature reveal">
+      <div class="project-filters" role="group" aria-label="Filter projects"><button type="button" class="selected" data-filter="all" aria-pressed="true">All projects <span>4</span></button><button type="button" data-filter="backend" aria-pressed="false">Backend</button><button type="button" data-filter="algorithms" aria-pressed="false">Algorithms</button><p class="filter-status" aria-live="polite">Showing 4 projects</p></div><article class="project feature reveal" data-category="backend">
         <div class="project-number">01</div>
         <div class="project-main">
           <div class="project-kicker"><span>Featured backend</span><span>2026</span></div>
           <h3>FinCore</h3>
-          <p>A production-oriented personal-finance REST API built around secure authentication, transactional account operations and a maintainable service architecture.</p>
-          <ul class="project-points">
+          <p>A personal-finance REST API for authenticated account management and transfers. Built around transaction safety and a maintainable service architecture.</p>
+          <p class="detail-label">Engineering decisions</p><ul class="project-points">
             <li>JWT authentication and protected endpoints with Spring Security.</li>
             <li>PostgreSQL persistence with Flyway migrations, JPA and validation.</li>
             <li>Transactional account transfers with deterministic locking and BigDecimal money handling.</li>
@@ -104,7 +86,7 @@
         </div>
         <div class="project-visual api-visual" aria-hidden="true">
           <div class="mini-window">
-            <div class="mini-bar"><span></span><span></span><span></span></div>
+            <div class="mini-bar"><span></span><span></span><span></span><small>API overview · illustrative</small></div>
             <div class="endpoint"><em>POST</em><code>/api/v1/auth/login</code></div>
             <div class="endpoint"><em class="get">GET</em><code>/api/v1/accounts</code></div>
             <div class="endpoint"><em>POST</em><code>/api/v1/accounts/transfer</code></div>
@@ -112,44 +94,38 @@
             <div class="response"><span>200</span> Secure response</div>
           </div>
         </div>
-      </article>
+      <details class="project-notes"><summary>Explore the engineering <span>+</span></summary><p>Account transfers bring correctness challenges: precise money representation, concurrent updates and consistent database state. This project uses BigDecimal, transactional service operations and deterministic locking to address those concerns.</p></details></article>
 
       <div class="project-grid">
-        <article class="project card reveal">
+        <article class="project card reveal" data-category="backend">
           <div class="project-number">02</div>
-          <div class="project-kicker"><span>Backend + analytics</span></div>
-          <h3>Finance API</h3>
-          <p>RESTful personal-finance backend with transaction and budget management, statistical spending analysis, CSV export and role-based security.</p>
-          <div class="tags"><span>Java</span><span>Spring Boot</span><span>MySQL</span><span>JWT</span></div>
-          <a class="card-link" href="https://github.com/phetolo-tshukudu/finance-api" target="_blank" rel="noopener">Explore project <span>↗</span></a>
+          <div class="project-kicker"><span>Community infrastructure</span></div>
+          <h3>Infrastructure Reporting</h3>
+          <p>A secure Spring Boot API where residents report community infrastructure issues and workers review and track incidents through to resolution.</p>
+          <p class="project-detail"><strong>Focus:</strong> Resident, worker and admin roles; audited status transitions; optimistic locking to prevent conflicting updates.</p>
+          <div class="tags"><span>Java 21</span><span>Spring Boot</span><span>MySQL</span><span>JWT</span><span>Flyway</span></div>
+          <a class="card-link" href="https://github.com/phetolo-tshukudu/infrastructure-reporting" target="_blank" rel="noopener">Explore project <span>↗</span></a>
+          <details class="project-notes"><summary>Explore the engineering <span>+</span></summary><p>Residents submit incidents with a category, description and coordinates. Workers and admins advance reports from reported to verified, in progress and resolved. Each change records its author and timestamp; optimistic locking rejects conflicting updates. The API also provides paginated filtering and incident analytics.</p></details>
         </article>
 
-        <article class="project card reveal">
+        <article class="project card reveal" data-category="backend">
           <div class="project-number">03</div>
+          <div class="project-kicker"><span>Backend + analytics</span></div>
+          <h3>Finance API</h3>
+          <p>A REST API for managing transactions and budgets, with statistical spending analysis and CSV export.</p>
+          <p class="project-detail"><strong>Focus:</strong> Combining finance workflows and analytics with role-based access control.</p><div class="tags"><span>Java</span><span>Spring Boot</span><span>MySQL</span><span>JWT</span></div>
+          <a class="card-link" href="https://github.com/phetolo-tshukudu/finance-api" target="_blank" rel="noopener">Explore project <span>↗</span></a>
+        <details class="project-notes"><summary>Explore the engineering <span>+</span></summary><p>The project connects transaction and budget management with spending analysis. CSV export makes the data reusable, while role-based access control protects finance workflows.</p></details></article>
+
+        <article class="project card reveal" data-category="algorithms">
+          <div class="project-number">04</div>
           <div class="project-kicker"><span>Algorithms + desktop</span></div>
           <h3>Wildfire Simulator</h3>
           <p>JavaFX application that models wildfire propagation across terrain and uses graph-based pathfinding to identify safer evacuation routes.</p>
-          <div class="tags"><span>Java</span><span>JavaFX</span><span>Dijkstra</span><span>Graphs</span></div>
+          <p class="project-detail"><strong>Focus:</strong> Applying graph algorithms to route finding in a changing simulation.</p><div class="tags"><span>Java</span><span>JavaFX</span><span>Dijkstra</span><span>Graphs</span></div>
           <a class="card-link" href="https://github.com/phetolo-tshukudu/Wildfire-Simulator" target="_blank" rel="noopener">Explore project <span>↗</span></a>
-        </article>
+        <details class="project-notes"><summary>Explore the engineering <span>+</span></summary><p>The application combines a terrain-based wildfire model with graph-based route finding. Dijkstra’s algorithm provides a practical connection between mathematical reasoning and an interactive JavaFX application.</p></details></article>
 
-        <article class="project card reveal">
-          <div class="project-number">04</div>
-          <div class="project-kicker"><span>Desktop application</span></div>
-          <h3>Personal Knowledge Manager</h3>
-          <p>A JavaFX desktop application for creating, editing and persisting notes, built as a practical exercise in application structure and local data persistence.</p>
-          <div class="tags"><span>Java</span><span>JavaFX</span><span>Desktop</span><span>Persistence</span></div>
-          <a class="card-link" href="https://github.com/phetolo-tshukudu/personal-knowledge-manager" target="_blank" rel="noopener">Explore project <span>↗</span></a>
-        </article>
-
-        <article class="project card reveal">
-          <div class="project-number">05</div>
-          <div class="project-kicker"><span>Financial systems</span></div>
-          <h3>PersonalFinance</h3>
-          <p>A Java personal-finance project that became the foundation for later backend work, showing the progression from application logic toward production-ready API design.</p>
-          <div class="tags"><span>Java</span><span>Finance</span><span>Backend</span></div>
-          <a class="card-link" href="https://github.com/phetolo-tshukudu/PersonalFinance" target="_blank" rel="noopener">Explore project <span>↗</span></a>
-        </article>
       </div>
     </section>
 
@@ -157,7 +133,7 @@
       <div class="section-heading sticky-heading reveal">
         <div>
           <p class="eyebrow">About me</p>
-          <h2>Software engineering with a quantitative foundation.</h2>
+          <h2>A quantitative foundation.</h2>
         </div>
       </div>
       <div class="about-copy reveal">
@@ -174,7 +150,7 @@
 
     <section class="section shell" id="experience">
       <div class="section-heading reveal">
-        <div><p class="eyebrow">Experience & education</p><h2>Built through study, projects and community work.</h2></div>
+        <div><p class="eyebrow">Experience & education</p><h2>Education &amp; experience</h2></div>
       </div>
       <div class="timeline">
         <article class="timeline-item reveal">
@@ -193,7 +169,7 @@
     </section>
 
     <section class="section shell stack-section">
-      <div class="section-heading reveal"><div><p class="eyebrow">Technical toolbox</p><h2>Tools I use to ship.</h2></div></div>
+      <div class="section-heading reveal"><div><p class="eyebrow">Technical toolbox</p><h2>Technical skills</h2></div></div>
       <div class="stack-grid reveal">
         <div><h3>Languages</h3><p>Java · Python · SQL · R</p></div>
         <div><h3>Backend</h3><p>Spring Boot · Spring Security · REST APIs · JWT · JPA / Hibernate</p></div>
@@ -206,18 +182,18 @@
 
     <section class="contact-section" id="contact">
       <div class="shell contact-card reveal">
-        <p class="eyebrow">Let’s build something useful.</p>
-        <h2>Looking for a junior developer with strong analytical foundations?</h2>
+        <p class="eyebrow">Contact</p>
+        <h2>Let’s work together.</h2>
         <p>I’m open to graduate and junior opportunities in backend engineering, software engineering and data-focused roles.</p>
         <div class="hero-actions">
-          <a class="button primary light" href="mailto:phetolotshukudu@gmail.com">Email me ↗</a>
-          <a class="button ghost light" href="assets/Phetolo-Tshukudu-CV.pdf" target="_blank" rel="noopener">View CV ↗</a>
+          <a class="button primary light" href="mailto:phetolotshukudu@gmail.com">phetolotshukudu@gmail.com ↗</a>
+          <a class="button ghost light" href="assets/Phetolo_Tshukudu_CV.pdf" target="_blank" rel="noopener">View CV ↗</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <button class="back-top" type="button" aria-label="Back to top">↑</button><div class="scroll-progress" aria-hidden="true"></div><footer class="footer">
     <div class="shell footer-inner">
       <div><strong>Phetolo Tshukudu</strong><span>Backend · Data · FinTech</span></div>
       <div class="footer-links"><a href="https://github.com/phetolo-tshukudu" target="_blank" rel="noopener">GitHub</a><a href="https://linkedin.com/in/phetolo-tshukudu-96a8a8249" target="_blank" rel="noopener">LinkedIn</a><a href="#top">Back to top ↑</a></div>
