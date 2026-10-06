@@ -103,9 +103,9 @@
           <h3>Infrastructure Reporting</h3>
           <p>A secure Spring Boot API where residents report community infrastructure issues and workers review and track incidents through to resolution.</p>
           <p class="project-detail"><strong>Focus:</strong> Resident, worker and admin roles; audited status transitions; optimistic locking to prevent conflicting updates.</p>
-          <div class="tags"><span>Java 21</span><span>Spring Boot</span><span>MySQL</span><span>JWT</span><span>Flyway</span></div>
+          <div class="tags"><span>Java 21</span><span>Spring Boot</span><span>MySQL</span><span>JWT</span><span>Flyway</span><span>Docker</span></div>
           <a class="card-link" href="https://github.com/phetolo-tshukudu/infrastructure-reporting" target="_blank" rel="noopener">Explore project <span>↗</span></a>
-          <details class="project-notes"><summary>Explore the engineering <span>+</span></summary><p>Residents submit incidents with a category, description and coordinates. Workers and admins advance reports from reported to verified, in progress and resolved. Each change records its author and timestamp; optimistic locking rejects conflicting updates. The API also provides paginated filtering and incident analytics.</p></details>
+          <details class="project-notes"><summary>Explore the engineering <span>+</span></summary><p>Residents submit incidents with a category, description and coordinates. Workers and admins advance reports from reported to verified, in progress and resolved. Each change records its author and timestamp; optimistic locking rejects conflicting updates. The API also provides paginated filtering and incident analytics. Docker Compose runs the API and MySQL together, with database health checks and persistent storage.</p></details>
         </article>
 
         <article class="project card reveal" data-category="backend">
